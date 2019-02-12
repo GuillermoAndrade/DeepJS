@@ -20,6 +20,7 @@ import { JsonInputComponentImpl } from './demo/input/json-input/json-input.compo
 import { VisualizationContainerComponentImpl } from './demo/visualization/visualization-container.component';
 import { VisualizationItemComponentImpl } from './demo/visualization/visualization-item/visualization-item.component';
 import { InjectComponentDirective } from './shared/directives/inject-component.directive'
+import { Zip } from '@ionic-native/zip/ngx';
 
 declare global {
   interface Window {
@@ -48,7 +49,7 @@ declare global {
     BrowserModule,
     FormsModule
   ],
-  providers: [TrainerServiceImpl],
+  providers: [TrainerServiceImpl, Zip],
   entryComponents: [JsonInputComponentImpl, ImageInputComponentImpl],
   //  providers: [ {provide:[ModelTrainer], useClass:[ModelTrainerImpl]} ],
   bootstrap: [AppComponent]
