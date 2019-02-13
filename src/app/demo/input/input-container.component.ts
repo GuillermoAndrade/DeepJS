@@ -54,6 +54,10 @@ export class InputContainerComponentImpl implements InputContainerComponent, OnI
     }
   }
 
+  exportJson(){
+    this.presenter.exportJson();
+  }
+
 
 
   getPresenter():InputContainerPresenter{return this.presenter;}

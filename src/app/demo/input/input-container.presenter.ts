@@ -15,4 +15,11 @@ export class InputContainerPresenterImpl implements InputContainerPresenter{
   getInputData():InputData {
     return this.inputPresenter.getInputData();
   }
+
+  exportJson(){
+    var fileSaver = require('file-saver');
+    var data = JSON.stringify(this.getInputData());
+    var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+    fileSaver.saveAs(blob, "export.json");
+  }
 }
