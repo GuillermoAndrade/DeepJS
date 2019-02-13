@@ -5,4 +5,7 @@ export class ImageInputPresenterImpl implements ImageInputPresenter{
     getInputData(): InputData {
         return null;
     }
+    getDataset():string{
+        return null;
+    }
 }

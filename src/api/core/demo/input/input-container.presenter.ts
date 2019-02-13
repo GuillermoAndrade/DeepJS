@@ -6,4 +6,5 @@ export interface InputContainerPresenter{
     getInputData():InputData;
     setInputPresenter(inputPresenter:InputPresenter);
     exportJson();
+    getDataset():string;
 }

@@ -24,4 +24,7 @@ export class JsonInputPresenterImpl implements JsonInputPresenter {
     return this.input;
   }
 
+  getDataset():string{
+    return this.json;
+  }
 }
