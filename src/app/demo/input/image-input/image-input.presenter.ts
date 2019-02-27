@@ -4,6 +4,7 @@ import { tap, take,  map, skip } from 'rxjs/operators';
 import * as tf from '@tensorflow/tfjs';
 import { InputDataImpl } from '../../../shared/models/inputData';
 import readImageData from 'read-image-data';
+import { TensorArray } from '@tensorflow/tfjs-converter/dist/src/executor/tensor_array';
 
 
 export class ImageInputPresenterImpl implements ImageInputPresenter{
@@ -15,7 +16,7 @@ export class ImageInputPresenterImpl implements ImageInputPresenter{
   private nbChannels$: Subject<number>;
   private labels: { [key:string]:number; };
   private nbLabels:number;
-
+  private inputs: InputData;
 
 
   constructor() {
@@ -89,6 +90,7 @@ export class ImageInputPresenterImpl implements ImageInputPresenter{
         const a = tf.stack(tensors);
         tf.dispose(tensors);
         const b =  new InputDataImpl(a, labels);
+        this.inputs = b;
         b.setLabels(this.reverseDict(this.labels));
         return b;
       }),
@@ -98,7 +100,7 @@ export class ImageInputPresenterImpl implements ImageInputPresenter{
   }
 
   getDataset():string{
-    return null;
+    return JSON.stringify({x : this.inputs.getXTensor().arraySync(), y : this.inputs.getYTensor().arraySync()});
   }
 
   private reverseDict(d:{ [key:string]:number; }):string[]{
